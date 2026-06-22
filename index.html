@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Summary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="card" role="main">
+
+    <!-- Hero Illustration -->
+    <div class="card__hero" aria-hidden="true">
+      <!-- Cityscape silhouette -->
+      <div class="city">
+        <div class="city__building city__building--1"></div>
+        <div class="city__building city__building--2"></div>
+        <div class="city__building city__building--3"></div>
+        <div class="city__building city__building--4"></div>
+        <div class="city__building city__building--5"></div>
+        <div class="city__building city__building--6"></div>
+        <div class="city__building city__building--7"></div>
+      </div>
+
+      <!-- Floating music notes -->
+      <span class="note note--1">♪</span>
+      <span class="note note--2">♫</span>
+      <span class="note note--3">♪</span>
+      <span class="note note--4">♫</span>
+
+      <!-- Dots decoration -->
+      <span class="dot dot--1"></span>
+      <span class="dot dot--2"></span>
+      <span class="dot dot--3"></span>
+
+      <!-- Dancing figure (SVG) -->
+      <svg class="dancer" viewBox="0 0 160 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Body/shirt (teal) -->
+        <ellipse cx="80" cy="130" rx="34" ry="40" fill="#3ECFC4"/>
+        <!-- Head -->
+        <circle cx="80" cy="72" r="24" fill="#F5CBA7"/>
+        <!-- Hair -->
+        <path d="M56 68 Q58 44 80 48 Q102 44 104 68 Q100 52 80 54 Q60 52 56 68Z" fill="#2c2c54"/>
+        <!-- Headphones -->
+        <path d="M58 68 Q58 50 80 50 Q102 50 102 68" stroke="#1a1a2e" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <rect x="52" y="66" width="12" height="16" rx="4" fill="#1a1a2e"/>
+        <rect x="96" y="66" width="12" height="16" rx="4" fill="#1a1a2e"/>
+        <!-- Left arm raised -->
+        <path d="M56 120 Q30 90 18 65" stroke="#1a1a2e" stroke-width="14" stroke-linecap="round"/>
+        <circle cx="16" cy="60" r="10" fill="#F5CBA7"/>
+        <!-- Right arm with phone -->
+        <path d="M104 120 Q128 108 140 115" stroke="#1a1a2e" stroke-width="14" stroke-linecap="round"/>
+        <!-- Phone -->
+        <rect x="133" y="108" width="18" height="28" rx="3" fill="#f0f0f0"/>
+        <rect x="135" y="111" width="14" height="20" rx="1" fill="#c8c8e8"/>
+        <!-- Headphone cord -->
+        <path d="M80 94 Q115 110 138 120" stroke="#1a1a2e" stroke-width="2.5" fill="none"/>
+        <!-- Legs -->
+        <path d="M68 168 Q62 190 55 210" stroke="#1a1a2e" stroke-width="14" stroke-linecap="round"/>
+        <path d="M92 168 Q100 188 108 205" stroke="#1a1a2e" stroke-width="14" stroke-linecap="round"/>
+        <!-- Shoes -->
+        <ellipse cx="51" cy="212" rx="14" ry="6" fill="#1a1a2e"/>
+        <ellipse cx="110" cy="207" rx="14" ry="6" fill="#1a1a2e"/>
+      </svg>
+    </div>
+
+    <!-- Card Body -->
+    <section class="card__body">
+      <h1 class="card__title">Order Summary</h1>
+
+      <p class="card__description">
+        You can now listen to millions of songs, audiobooks, and podcasts
+        on any device anywhere you like!
+      </p>
+
+      <!-- Plan Row -->
+      <article class="plan" aria-label="Selected plan details">
+        <div class="plan__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 18V6l12-2v12" stroke="#6c63ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="6" cy="18" r="3" fill="#6c63ff"/>
+            <circle cx="18" cy="16" r="3" fill="#6c63ff"/>
+          </svg>
+        </div>
+
+        <div class="plan__info">
+          <strong class="plan__name">Annual Plan</strong>
+          <span class="plan__price">$59.99/year</span>
+        </div>
+
+        <a href="#" class="plan__change" role="button" aria-label="Change subscription plan">Change</a>
+      </article>
+
+      <!-- CTA Button -->
+      <button
+        class="btn btn--primary"
+        type="button"
+        onclick="handleProceed(this)"
+        aria-label="Proceed to payment"
+      >
+        Proceed to Payment
+      </button>
+
+      <!-- Cancel -->
+      <button
+        class="btn btn--ghost"
+        type="button"
+        onclick="handleCancel(this)"
+        aria-label="Cancel your order"
+      >
+        Cancel Order
+      </button>
+    </section>
+
+  </main>
+
+  <script>
+    function handleProceed(btn) {
+      btn.textContent = 'Redirecting…';
+      btn.disabled = true;
+      btn.classList.add('btn--loading');
+      setTimeout(() => {
+        btn.textContent = 'Proceed to Payment';
+        btn.disabled = false;
+        btn.classList.remove('btn--loading');
+      }, 2000);
+    }
+
+    function handleCancel(btn) {
+      const confirmed = confirm('Are you sure you want to cancel your order?');
+      if (confirmed) {
+        btn.textContent = 'Order Cancelled';
+        btn.style.color = '#e74c3c';
+      }
+    }
+  </script>
+
+</body>
+</html>
